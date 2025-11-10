@@ -59,13 +59,6 @@ The following settings must be configured as **Application Settings** in your Az
 | `Jwt:Issuer` | `Moodyali` | The issuer of the JWT token. |
 | `Jwt:Audience` | `MoodyaliClient` | The audience of the JWT token. |
 
-### Deployment Steps
-
-1.  **Create Azure Resources:** Set up an Azure App Service and an Azure SQL Database.
-2.  **Configure Application Settings:** Add the settings from the table above to your App Service Configuration.
-3.  **Deployment:** Deploy the `Moodyali.API` project to the Azure App Service using your preferred method (e.g., GitHub Actions, Azure DevOps, or Visual Studio Publish).
-4.  **Database Migration:** The `Program.cs` is configured to automatically run `dbContext.Database.Migrate()` on startup, which will apply the migrations to your Azure SQL Database using the configured connection string.
-
 ## API Endpoints
 
 | Method | Path | Description | Authentication |
