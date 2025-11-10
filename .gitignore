@@ -1,0 +1,53 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscfg
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
+
+# Packages
+*.nupkg
+*.snupkg
+**/node_modules
+.npm/
+
+# Entity Framework Core
+ef.dbmdl
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# SQLite database file
+*.db
+
+# Rider
+.idea/
+
+# Environment variables
+.env
+appsettings.Development.json
+appsettings.Production.json
+appsettings.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+!appsettings.Production.json
+
+# Logs
+logs/
+*.log
+
+# Test results
+TestResults/
+
+# Azure deployment files
+*.pubxml
+*.pfx
+.azure/

@@ -1,0 +1,6 @@
+@Moodyali.API_HostAddress = http://localhost:5048
+
+GET {{Moodyali.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
