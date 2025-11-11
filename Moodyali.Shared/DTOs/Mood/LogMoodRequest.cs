@@ -7,4 +7,5 @@ public class LogMoodRequest
 {
     [Required]
     public string Emoji { get; set; } = string.Empty;
+    public string? Note { get; set; }
 }

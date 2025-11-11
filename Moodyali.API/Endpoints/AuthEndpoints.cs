@@ -39,5 +39,18 @@ public static class AuthEndpoints
         })
         .WithName("Login")
         .AllowAnonymous();
+
+        app.MapPost("/auth/forgot-password", async (
+            [FromBody] ForgotPasswordRequest request,
+            IAuthService authService) =>
+        {
+            // The service handles the logic and avoids revealing if the email exists.
+            await authService.ForgotPasswordAsync(request.Email);
+
+            // Always return a success message to prevent user enumeration
+            return Results.Ok(new { message = "If an account with this email exists, a password reset link has been sent." });
+        })
+        .WithName("ForgotPassword")
+        .AllowAnonymous();
     }
 }

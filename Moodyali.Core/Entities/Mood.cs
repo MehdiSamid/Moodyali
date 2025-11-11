@@ -17,6 +17,7 @@ public class Mood
 
     [Required]
     public string Emoji { get; set; } = string.Empty; // Store the actual emoji string (e.g., "🙂")
+    public string? Note { get; set; }
 
     [Required]
     public int Score { get; set; } // Score from 0 to 10

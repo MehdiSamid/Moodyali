@@ -6,9 +6,16 @@ using Moodyali.API.Data;
 using Moodyali.API.Endpoints;
 using Moodyali.API.Services;
 using Moodyali.Core.Services;
+using Moodyali.API.Services;
 using Moodyali.Core.Entities;
+using Moodyali.API.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+    Console.WriteLine($"Environment: {builder.Environment.EnvironmentName}");
+
+// Add configuration for OpenAI API Key
+var openAiApiKey = builder.Configuration["OpenAI:ApiKey"] ?? string.Empty;
+builder.Services.AddSingleton(new OpenAIConfig { ApiKey = openAiApiKey });
 
 // --- Configuration ---
 var jwtSecret = builder.Configuration["Jwt:Secret"] ?? throw new InvalidOperationException("Jwt:Secret not configured.");
@@ -56,8 +63,10 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 
 // 3. Application Services
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IMoodService, MoodService>();
+	builder.Services.AddScoped<IAuthService, AuthService>();
+	builder.Services.AddScoped<IMoodService, MoodService>();
+	builder.Services.AddScoped<IRecommendationService, RecommendationService>();
+	builder.Services.AddHttpClient();
 
 // 4. CORS Configuration
 builder.Services.AddCors(options =>
@@ -99,6 +108,7 @@ app.UseStaticFiles();
 // --- Endpoints ---
 app.MapAuthEndpoints();
 app.MapMoodEndpoints();
+app.MapRecommendationEndpoints();
 
 // Apply migrations on startup (for local testing with SQLite)
 using (var scope = app.Services.CreateScope())

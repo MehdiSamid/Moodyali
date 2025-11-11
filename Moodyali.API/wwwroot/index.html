@@ -25,7 +25,18 @@
                     <button type="submit">Login</button>
                     <p id="login-message" class="message"></p>
                 </form>
+                <p><a href="#" id="show-forgot-password">Forgot Password?</a></p>
                 <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+            </div>
+
+            <div id="forgot-password-container" style="display:none;">
+                <h3>Forgot Password</h3>
+                <form id="forgot-password-form">
+                    <input type="email" id="forgot-email" placeholder="Enter your email" required>
+                    <button type="submit">Send Reset Link</button>
+                    <p id="forgot-message" class="message"></p>
+                </form>
+                <p>Remembered your password? <a href="#" id="show-login-from-forgot">Login here</a></p>
             </div>
 
             <div id="register-form-container" style="display:none;">
@@ -43,6 +54,7 @@
 
         <section id="dashboard-section" style="display:none;">
             <h2>Hello, <span id="dashboard-username"></span>!</h2>
+            <p style="font-style: italic; color: #5c67f2; margin-top: -10px; margin-bottom: 20px;">"Better mood, better sprint."</p>
 
             <div id="mood-log-container">
                 <h3>Log Your Mood Today</h3>
@@ -56,6 +68,8 @@
                         <option value="🙁">🙁 (Bad)</option>
                         <option value="😢">😢 (Sad)</option>
                     </select>
+                    <label for="mood-note" style="margin-top: 10px; display: block;">Note (optional):</label>
+                    <textarea id="mood-note" placeholder="Any additional comments about your mood..." rows="3"></textarea>
                     <button type="submit">Log Mood</button>
                     <p id="mood-log-message" class="message"></p>
                 </form>
@@ -69,15 +83,29 @@
                 <p>Sad Days: <span id="sad-days"></span></p>
             </div>
 
+            <div id="weekly-trends-container">
+                <h3>Weekly Mood Trends</h3>
+                <canvas id="mood-chart"></canvas>
+            </div>
+
             <div id="weekly-mood-container">
                 <h3>Last 7 Days</h3>
                 <ul id="weekly-mood-list">
                     <!-- Weekly moods will be inserted here -->
                 </ul>
             </div>
+
+            <div id="recommendation-container">
+                <h3>AI Recommendation for Next Week</h3>
+                <p id="recommendation-message" class="message" style="margin-top: 10px;"></p>
+                <div id="recommendation-output" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; min-height: 50px;">
+                    <!-- Recommendation will be displayed here -->
+                </div>
+            </div>
         </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

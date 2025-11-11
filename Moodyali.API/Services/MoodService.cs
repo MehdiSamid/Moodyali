@@ -29,6 +29,7 @@ public class MoodService : IMoodService
             // Update existing mood
             existingMood.Emoji = request.Emoji;
             existingMood.Score = score;
+            existingMood.Note = request.Note;
             _context.Moods.Update(existingMood);
             await _context.SaveChangesAsync();
             return existingMood;
@@ -41,7 +42,8 @@ public class MoodService : IMoodService
                 UserId = userId,
                 Date = today,
                 Emoji = request.Emoji,
-                Score = score
+                Score = score,
+                Note = request.Note
             };
             _context.Moods.Add(newMood);
             await _context.SaveChangesAsync();
@@ -58,7 +60,8 @@ public class MoodService : IMoodService
             {
                 Emoji = m.Emoji,
                 Score = m.Score,
-                Date = m.Date
+                Date = m.Date,
+                Note = m.Note
             })
             .FirstOrDefaultAsync();
 
@@ -76,7 +79,8 @@ public class MoodService : IMoodService
             {
                 Emoji = m.Emoji,
                 Score = m.Score,
-                Date = m.Date
+                Date = m.Date,
+                Note = m.Note
             })
             .ToListAsync();
 
@@ -92,7 +96,7 @@ public class MoodService : IMoodService
             }
             else
             {
-                result.Add(new MoodResponse { Date = date, Emoji = "❓", Score = 0 });
+                result.Add(new MoodResponse { Date = date, Emoji = "❓", Score = 0, Note = null });
             }
         }
 
